@@ -43,6 +43,26 @@ class IncubyteCalculatorApplicationTests {
 		assertEquals(5, cal.add("2,3"));
 	}
 
+	@Test
+	public void twoNumbersSeparateByCommaCheck() {
+		assertEquals(25, cal.add("12,13"));
+	}
+
+	@Test
+	public void twoNumbersSeparateByAsteriskCheck() {
+		assertEquals(1, cal.add("12*13"));
+	}
+
+	@Test
+	public void twoNonNumbersSeparateByAsteriskCheck() {
+		assertEquals(1, cal.add("A*13"));
+	}
+
+	@Test
+	public void twoNonNumbersSeparateByCommaCheck() {
+		assertEquals(Integer.MAX_VALUE, cal.add("12,B"));
+	}
+
 
 
 }
