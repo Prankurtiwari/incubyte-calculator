@@ -1,11 +1,10 @@
 package com.incubyte.incubyte_calculator;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class IncubyteCalculatorApplicationTests {
@@ -67,6 +66,21 @@ class IncubyteCalculatorApplicationTests {
 	@Test
 	public void anyNumberSeparateByCommonCheck() {
 		assertEquals(23, cal.add("12,4,7"));
+	}
+
+	@Test
+	public void anyNumberSeparateByAsteriskCheck() {
+		assertEquals(0, cal.add("12*4*7"));
+	}
+
+	@Test
+	public void anyNonNumberSeparateByCommaCheck() {
+		assertThrows(NumberFormatException.class, () -> cal.add("A,4,7"));
+	}
+
+	@Test
+	public void anyNumberSeparateByCommonAndAsteriskCheck() {
+		assertEquals(23, cal.add("12,4*7"));
 	}
 
 

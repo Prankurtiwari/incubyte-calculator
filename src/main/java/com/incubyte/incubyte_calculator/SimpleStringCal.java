@@ -8,21 +8,13 @@ public class SimpleStringCal implements ICalculator {
         if (num == null || num.isEmpty()) {
             return 0;
         }
-        else if (num.length() == 1) {
-            try {
-                return Integer.parseInt(num);
-            } catch (NumberFormatException exception) {
-                return Integer.MAX_VALUE;
-            }
-
-        } else if (num.length() > 2 && num.contains(COMMA)) {
+        int sum = 0;
+        if (num.length() > 1 && num.contains(COMMA)) {
             String[] numbers = num.split(COMMA);
-            try {
-                return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
-            } catch (NumberFormatException exception) {
-                return Integer.MAX_VALUE;
+            for (String number: numbers) {
+                sum += Integer.parseInt(number);
             }
         }
-        return 1;
+        return sum;
     }
 }
