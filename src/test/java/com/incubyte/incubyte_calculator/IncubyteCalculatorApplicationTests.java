@@ -33,4 +33,16 @@ class IncubyteCalculatorApplicationTests {
 		assertEquals(2, cal.add("2"));
 	}
 
+	@Test
+	public void anyNonNumberCheck() {
+		assertEquals(Integer.MAX_VALUE, cal.add("A"));
+	}
+
+	@Test
+	public void twoNumbersCheck() {
+		assertEquals(5, cal.add("2,3"));
+	}
+
+
+
 }
