@@ -64,5 +64,10 @@ class IncubyteCalculatorApplicationTests {
 	}
 
 
+	@Test
+	public void anyNumberSeparateByCommonCheck() {
+		assertEquals(23, cal.add("12,4,7"));
+	}
+
 
 }
