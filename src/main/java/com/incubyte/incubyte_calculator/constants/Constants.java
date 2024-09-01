@@ -1,4 +1,4 @@
-package com.incubyte.incubyte_calculator;
+package com.incubyte.incubyte_calculator.constants;
 
 public class Constants {
     public static final String COMMA =",";

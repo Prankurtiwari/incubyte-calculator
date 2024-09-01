@@ -1,5 +1,6 @@
 package com.incubyte.incubyte_calculator;
 
+import com.incubyte.incubyte_calculator.services.impl.SimpleStringCal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,9 +1,11 @@
-package com.incubyte.incubyte_calculator;
+package com.incubyte.incubyte_calculator.services.impl;
+
+import com.incubyte.incubyte_calculator.services.ICalculator;
 
 import java.util.regex.Pattern;
 
-import static com.incubyte.incubyte_calculator.Constants.COMMA;
-import static com.incubyte.incubyte_calculator.Constants.NEW_LINE;
+import static com.incubyte.incubyte_calculator.constants.Constants.COMMA;
+import static com.incubyte.incubyte_calculator.constants.Constants.NEW_LINE;
 
 public class SimpleStringCal implements ICalculator {
 
