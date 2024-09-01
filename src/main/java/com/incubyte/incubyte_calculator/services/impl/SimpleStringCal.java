@@ -53,6 +53,9 @@ public class SimpleStringCal implements ICalculator {
                     isNegativeNumberPresent = true;
                     negatives.add(parsed);
                 }
+                if (parsed > LIMIT) {
+                    continue;
+                }
                 sum += parsed;
             }
         }

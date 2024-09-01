@@ -121,4 +121,13 @@ class IncubyteCalculatorApplicationTests {
 		assertThrows(NegativeNumberException.class, () ->cal.add("//*+\n1\n*+-2\n*+3"));
 	}
 
+	@Test
+	public void greaterNumberCheckWithLimit() {
+		assertEquals(1005, cal.add("//*+\n1000\n*+2\n*+3"));
+	}
+
+	@Test
+	public void greaterNumberCheckWithMoreThanLimit() {
+		assertEquals(5, cal.add("//*+\n1001\n*+2\n*+3"));
+	}
 }
