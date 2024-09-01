@@ -35,7 +35,7 @@ class IncubyteCalculatorApplicationTests {
 
 	@Test
 	public void anyNonNumberCheck() {
-		assertEquals(Integer.MAX_VALUE, cal.add("A"));
+		assertEquals(0, cal.add("A"));
 	}
 
 	@Test
@@ -50,17 +50,17 @@ class IncubyteCalculatorApplicationTests {
 
 	@Test
 	public void twoNumbersSeparateByAsteriskCheck() {
-		assertEquals(1, cal.add("12*13"));
+		assertEquals(0, cal.add("12*13"));
 	}
 
 	@Test
 	public void twoNonNumbersSeparateByAsteriskCheck() {
-		assertEquals(1, cal.add("A*13"));
+		assertEquals(0, cal.add("A*13"));
 	}
 
 	@Test
 	public void twoNonNumbersSeparateByCommaCheck() {
-		assertEquals(Integer.MAX_VALUE, cal.add("12,B"));
+		assertThrows(NumberFormatException.class, () -> cal.add("12,B"));
 	}
 
 

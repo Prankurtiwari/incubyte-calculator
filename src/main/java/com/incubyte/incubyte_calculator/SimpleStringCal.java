@@ -27,6 +27,11 @@ public class SimpleStringCal implements ICalculator {
         int sum = 0;
         String delimiter = getDelimiter(num);
         num = getActualString(num);
+
+        if (num.length() == 1 && Character.isDigit(num.charAt(0))) {
+            return Integer.parseInt(num.trim());
+        }
+
         if (num.length() > 1 && num.contains(delimiter)) {
             String[] numbers = num.split(Pattern.quote(delimiter));
             for (String number: numbers) {
