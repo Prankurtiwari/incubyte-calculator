@@ -94,4 +94,24 @@ class IncubyteCalculatorApplicationTests {
 		assertThrows(NumberFormatException.class, () -> cal.add("1\n,2*3*4\n"));
 	}
 
+	@Test
+	public void anyNumberWithCustomDelimiterCheck() {
+		assertEquals(6, cal.add("//*\n1*2*3"));
+	}
+
+	@Test
+	public void anyNumberWithCustomDelimitersCheck() {
+		assertEquals(6, cal.add("//*+\n1*+2*+3"));
+	}
+
+	@Test
+	public void anyNumberWithCustomDelimitersAndNewLineCheck() {
+		assertEquals(6, cal.add("//*+\n1\n*+2\n*+3"));
+	}
+
+	@Test
+	public void anyNumberWithCustomDelimitersNegativeNumberAndNewLineCheck() {
+		assertEquals(6, cal.add("//*+\n-1\n*+2\n*+3"));
+	}
+
 }
