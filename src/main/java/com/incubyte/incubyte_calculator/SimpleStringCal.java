@@ -12,7 +12,7 @@ public class SimpleStringCal implements ICalculator {
         if (num.length() > 1 && num.contains(COMMA)) {
             String[] numbers = num.split(COMMA);
             for (String number: numbers) {
-                sum += Integer.parseInt(number);
+                sum += Integer.parseInt(number.trim());
             }
         }
         return sum;

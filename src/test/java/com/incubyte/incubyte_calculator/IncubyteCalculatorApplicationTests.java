@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class IncubyteCalculatorApplicationTests {
@@ -80,8 +81,17 @@ class IncubyteCalculatorApplicationTests {
 
 	@Test
 	public void anyNumberSeparateByCommonAndAsteriskCheck() {
-		assertEquals(23, cal.add("12,4*7"));
+		assertThrows(NumberFormatException.class, () -> cal.add("A,4,7"));
 	}
 
+	@Test
+	public void anyNumberWithNewLineCheck() {
+		assertEquals(10, cal.add("1\n,2,3,4\n"));
+	}
+
+	@Test
+	public void anyNumberWithNewLineWithAsteriskCheck() {
+		assertThrows(NumberFormatException.class, () -> cal.add("1\n,2*3*4\n"));
+	}
 
 }
