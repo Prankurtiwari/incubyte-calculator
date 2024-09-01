@@ -1,11 +1,12 @@
 package com.incubyte.incubyte_calculator.services.impl;
 
+import com.incubyte.incubyte_calculator.exceptions.NegativeNumberException;
 import com.incubyte.incubyte_calculator.services.ICalculator;
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import static com.incubyte.incubyte_calculator.constants.Constants.COMMA;
-import static com.incubyte.incubyte_calculator.constants.Constants.NEW_LINE;
+import static com.incubyte.incubyte_calculator.constants.Constants.*;
 
 public class SimpleStringCal implements ICalculator {
 
@@ -22,7 +23,7 @@ public class SimpleStringCal implements ICalculator {
 
 
     @Override
-    public int add(String num) {
+    public int add(String num) throws NegativeNumberException {
         if (num == null || num.isEmpty()) {
             return 0;
         }
@@ -34,11 +35,29 @@ public class SimpleStringCal implements ICalculator {
             return Integer.parseInt(num.trim());
         }
 
+        if (num.length() > 1 && num.charAt(0) == '-') {
+            int number = Integer.parseInt(num.trim());
+            if (number < 0)
+                throw new NegativeNumberException(number, ERROR_MSG);
+            return number;
+        }
+
+
+        boolean isNegativeNumberPresent = false;
+        ArrayList<Integer> negatives = new ArrayList<>();
         if (num.length() > 1 && num.contains(delimiter)) {
             String[] numbers = num.split(Pattern.quote(delimiter));
             for (String number: numbers) {
-                sum += Integer.parseInt(number.trim());
+                int parsed = Integer.parseInt(number.trim());
+                if (parsed < 0) {
+                    isNegativeNumberPresent = true;
+                    negatives.add(parsed);
+                }
+                sum += parsed;
             }
+        }
+        if (isNegativeNumberPresent) {
+            throw new NegativeNumberException(negatives, ERROR_MSG);
         }
         return sum;
     }

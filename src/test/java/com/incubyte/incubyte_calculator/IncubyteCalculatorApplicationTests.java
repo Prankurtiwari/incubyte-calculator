@@ -1,5 +1,6 @@
 package com.incubyte.incubyte_calculator;
 
+import com.incubyte.incubyte_calculator.exceptions.NegativeNumberException;
 import com.incubyte.incubyte_calculator.services.impl.SimpleStringCal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -111,8 +112,13 @@ class IncubyteCalculatorApplicationTests {
 	}
 
 	@Test
+	public void anyNumberOneNegativeNumberCheck() {
+		assertThrows(NegativeNumberException.class, () ->cal.add("-3"));
+	}
+
+	@Test
 	public void anyNumberWithCustomDelimitersNegativeNumberAndNewLineCheck() {
-		assertEquals(6, cal.add("//*+\n-1\n*+2\n*+3"));
+		assertThrows(NegativeNumberException.class, () ->cal.add("//*+\n1\n*+-2\n*+3"));
 	}
 
 }
